@@ -2,46 +2,56 @@
 Fail2ban for Centos7  
 
 
-Installing Fail2Ban
-To install Fail2Ban on CentOS 7, we will have to install EPEL (Extra Packages for Enterprise Linux) repository first. EPEL contains additional packages for all CentOS versions, one of these additional packages is Fail2Ban.
-The following commands must be executed after switching to the root user.
-yum install epel-release
-yum install fail2ban fail2ban-systemd
-If you have SELinux installed, then update the SELinux policies:
-yum update -y selinux-policy*
-Configure settings for Fail2Ban
-Once installed, we will have to configure and customize the software with a jail.local configuration file. The jail.local file overrides the jail.conf file and is used to make your custom configuration update safe.
-Make a copy of the jail.conf file and save it with the name jail.local:
-cp -pf /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-Open the jail.local file for editing in Nano with the following command.
-nano /etc/fail2ban/jail.local
-The file code may consist of many lines of codes which execute to prevent a ban on one or many IP addresses, set bantime duration, etc. A typical jail configuration file contains the following lines.
-[DEFAULT]
+## Installing Fail2Ban  
+To install Fail2Ban on CentOS 7, we will have to install EPEL (Extra Packages for Enterprise Linux) repository first. EPEL contains additional packages for all CentOS versions, one of these additional packages is Fail2Ban.  
+The following commands must be executed after switching to the root user.  
+```  
+yum -y install epel-release  
+yum -y install fail2ban fail2ban-systemd  
+```  
+If you have SELinux installed, then update the SELinux policies:  
+`yum update -y selinux-policy*`  
 
-#
-# MISCELLANEOUS OPTIONS
-#
+## Configure settings for Fail2Ban  
 
-# "ignoreip" can be an IP address, a CIDR mask or a DNS host. Fail2ban will not
-# ban a host which matches an address in this list. Several addresses can be
-# defined using space separator.
-ignoreip = 127.0.0.1/8
+Once installed, we will have to configure and customize the software with a jail.local configuration file. The jail.local file overrides the jail.conf file and is used to make your custom configuration update safe.  
 
-# External command that will take an tagged arguments to ignore, e.g. <ip>,
-# and return true if the IP is to be ignored. False otherwise.
-#
-# ignorecommand = /path/to/command <ip>
-ignorecommand =
+* Make a copy of the jail.conf file and save it with the name jail.local:  
+`cp -pf /etc/fail2ban/jail.conf /etc/fail2ban/jail.local`  
+Open the jail.local file for editing in Nano with the following command.  
+`vi /etc/fail2ban/jail.local`  
+The file code may consist of many lines of codes which execute to prevent a ban on one or many IP addresses, set bantime duration, etc. A typical jail configuration file contains the following lines.  
 
-# "bantime" is the number of seconds that a host is banned.
-bantime = 600
+```  
+[DEFAULT]  
 
-# A host is banned if it has generated "maxretry" during the last "findtime"
-# seconds.
-findtime = 600
+#  
+# MISCELLANEOUS OPTIONS  
+#  
 
-# "maxretry" is the number of failures before a host get banned.
-maxretry = 5
+# "ignoreip" can be an IP address, a CIDR mask or a DNS host. Fail2ban will not  
+# ban a host which matches an address in this list. Several addresses can be  
+# defined using space separator.  
+ignoreip = 127.0.0.1/8  
+
+# External command that will take an tagged arguments to ignore, e.g. <ip>,  
+# and return true if the IP is to be ignored. False otherwise.  
+#  
+# ignorecommand = /path/to/command <ip>  
+ignorecommand =  
+
+# "bantime" is the number of seconds that a host is banned.  
+bantime = 600  
+
+# A host is banned if it has generated "maxretry" during the last "findtime"  
+# seconds.  
+findtime = 600  
+
+# "maxretry" is the number of failures before a host get banned.  
+maxretry = 5  
+```  
+
+
 Ignoreip is used to set the list of IPs which will not be banned. The list of IP addresses should be given with a space separator. This parameter is used to set your personal IP address (if you access the server from a fixed IP).
 Bantime parameter is used to set the duration of seconds for which a host needs to be banned.
 Findtime is the parameter which is used to check if a host must be banned or not. When the host generates maxrety in its last findtime, it is banned.
