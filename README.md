@@ -41,14 +41,14 @@ ignoreip = 127.0.0.1/8
 ignorecommand =  
 
 # "bantime" is the number of seconds that a host is banned.  
-bantime = 600  
+bantime = 864000  
 
 # A host is banned if it has generated "maxretry" during the last "findtime"  
 # seconds.  
-findtime = 600  
+findtime = 7200  
 
 # "maxretry" is the number of failures before a host get banned.  
-maxretry = 5  
+maxretry = 10  
 ```  
 
 
@@ -68,8 +68,8 @@ enabled = true
 port = ssh
 #action = firewallcmd-ipset
 logpath = %(sshd_log)s
-maxretry = 5
-bantime = 86400
+maxretry = 10
+bantime = 864000
 ```  
 
 Parameter enabled is set to true, in order to provide protection, to deactivate protection, it is set to false. The filter parameter checks the sshd configuration file, located in the path /etc/fail2ban/filter.d/sshd.conf.  
