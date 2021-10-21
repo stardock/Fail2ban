@@ -26,13 +26,13 @@ The file code may consist of many lines of codes which execute to prevent a ban 
 [DEFAULT]  
 
 #  
-# MISCELLANEOUS OPTIONS  
+# MISCELLANEOUS OPTIONS
 #  
 
-# "ignoreip" can be an IP address, a CIDR mask or a DNS host. Fail2ban will not  
-# ban a host which matches an address in this list. Several addresses can be  
-# defined using space separator.  
-ignoreip = 127.0.0.1/8  
+# "ignoreip" can be an IP address, a CIDR mask or a DNS host. Fail2ban will not
+# ban a host which matches an address in this list. Several addresses can be
+# defined using space separator.
+ignoreip = 127.0.0.1/8
 
 # External command that will take an tagged arguments to ignore, e.g. <ip>,  
 # and return true if the IP is to be ignored. False otherwise.  
@@ -41,14 +41,14 @@ ignoreip = 127.0.0.1/8
 ignorecommand =  
 
 # "bantime" is the number of seconds that a host is banned.  
-bantime = 864000  
+bantime = 864000
 
 # A host is banned if it has generated "maxretry" during the last "findtime"  
 # seconds.  
-findtime = 7200  
+findtime = 7200
 
 # "maxretry" is the number of failures before a host get banned.  
-maxretry = 10  
+maxretry = 10
 ```  
 
 
