@@ -121,3 +121,12 @@ fail2ban-client set sshd unbanip IPADDRESS
 ```  
 
 
+This stupid changes impacted all of us: use firewall rich rules intead of iptables  
+The rich rules takes much of your time to imply the banaction.  
+Ref:  
+https://osric.com/chris/accidental-developer/2017/08/using-fail2ban-with-iptables-instead-of-firewalld/  
+https://gist.github.com/antoniocampos/1b8bc607d7b2d4a42e2a6e7df00645d0  
+```
+$ sudo mv /etc/fail2ban/jail.d/00-firewalld.conf /etc/fail2ban/jail.d/00-firewalld.disabled
+$ sudo systemctl restart fail2ban
+```
